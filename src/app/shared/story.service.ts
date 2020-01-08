@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class StoryService {
 
-  baseUrl = 'https://hn.algolia.com/api/v1/search_by_date?tags=story';
+  baseUrl = `${'https://hn.algolia.com/api/v1/search_by_date?tags=story'}`;
 
   constructor(private httpService: HttpClient) { }
 

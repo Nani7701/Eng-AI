@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.fetchStoryData();
   }
 
-  fetchStoryData() {
+  fetchStoryData() { // fetching stories from API and refreshing for every 10seconds
     timer(this.stratTime, this.interval).pipe(concatMap(() =>
       this.storyService.fetchStories())).subscribe(res => {
         this.storyList = res['hits'];
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  openDialog(data) {
+  openDialog(data) { // opening dialog and showing raw Json
     this.storyData = JSON.stringify(data);
     this.dialog.open(DialogComponent, {
         width: '50%',
@@ -43,14 +43,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  searchByTitle(column: string) {
+  searchByTitle(column: string) { 
     this.displayData.filterPredicate = (key: Story, filter: string) => {
       const titlesearch = key[column] && key[column].toLowerCase() || '';
       return titlesearch.indexOf(filter) != -1;
     }
   }
 
-  searchFilter(search: string) {
+  searchFilter(search: string) { // search filter of table by column title
     this.searchByTitle('title');
     this.displayData.filter = search.trim().toLowerCase();
   }
