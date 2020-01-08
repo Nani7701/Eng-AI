@@ -1,0 +1,30 @@
+<mat-form-field>
+    <input matInput (keyup)="searchFilter($event.target.value)" (focus)="searchByTitle('title')" placeholder="Search by title">
+</mat-form-field>
+
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="displayData">
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+        <mat-cell *matCellDef="let story"> {{ story.title }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="created_at">
+        <mat-header-cell *matHeaderCellDef> Created_At </mat-header-cell>
+        <mat-cell *matCellDef="let story"> {{ story.created_at }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="url">
+        <mat-header-cell *matHeaderCellDef> URL </mat-header-cell>
+        <mat-cell *matCellDef="let story"> {{ story.url }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="author">
+        <mat-header-cell *matHeaderCellDef> Athuor </mat-header-cell>
+        <mat-cell *matCellDef="let story"> {{ story.author }} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="headerColumns"></mat-header-row>
+      <mat-row *matRowDef="let story; columns: headerColumns;" (click)="openDialog(story)"></mat-row>
+    </mat-table>
+  </div>
